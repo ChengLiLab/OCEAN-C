@@ -7,7 +7,7 @@ reads = open(infilename,'r')
 results = open(outfilename,'w')
 
 
-genome = open('/lustre/user/liclab/lirf/Project/hic/hg19.filter2.txt','r')
+genome = open('~/hg19.filter2.txt','r') ## sequences of 24 chromosomes, one line each.
 data=[]
 for chrom in genome:
         tmp = chrom.strip().upper()
