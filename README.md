@@ -9,3 +9,5 @@ The OCEAN-C peaks, which were defined as HOCIs.
 In U266 cell line, HOCIs were determined by ZINBA from the filtered data with the same parameters set for FAIRE-seq. 
 In RPMI8226 and GM12878 cell lines, HOCIs were called by ZINBA with 'pscl' method from the filtered data for signals were too weak to be selected using the 'mixture' method.  Scripts are in Zinba_callpeak.tar.gz. 
 
+
+
