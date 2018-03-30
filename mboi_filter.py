@@ -5,7 +5,7 @@ import sys
 args=sys.argv
 infilename=args[args.index('-i')+1]
 outfilename=args[args.index('-o')+1]
-genome = open('/lustre/user/liclab/jialm/resource/hg19.filter2.txt','r') # sequences of 24 chromosomes, each a line 
+genome = open('~/hg19.filter2.txt','r') # sequences of 24 chromosomes, each a line 
 reads = open(infilename,'r')
 result = open(outfilename,'w')
 
