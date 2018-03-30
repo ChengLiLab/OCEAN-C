@@ -1,0 +1,47 @@
+library(zinba)
+generateAlignability(
+                     mapdir='~/hg19map150/',
+                     outdir='~/fc_cis_call_peak.broad/',
+                     athresh=4,
+                     extension=36,
+                     twoBitFile='~/hg19.2bit'
+                     )
+
+basealigncount(
+               inputfile='~/U266_fc_cis_fragment_filtered.single.part',
+               outputfile='~/fc_ciscallpeak/fc_cis_basecount',
+               extension=36,
+               filetype='bed',
+               twoBitFile='~/hg19.2bit'
+               )
+
+run.zinba(
+          buildwin=1,
+          refinepeaks=1,
+          method='mixture',
+          peakconfidence=.95,
+          outfile='~/fc_ciscallpeak/U266_cis_fc',
+          twoBit='~/hg19.2bit',
+          numProc=4,
+          seq='~/U266_fc_cis_fragment_filtered.single.bed',
+          filelist='~/fc_ciscallpeak/fc_cis_list',
+          input='none',
+          filetype='bed',
+          align='~/fc_ciscallpeak/',
+          winSize=250,
+          offset=50,
+          cnvWinSize=100000,
+          cnvOffset=2500,
+          extension=36,
+          formula=exp_count~exp_cnvwin_log+gcPerc+align_perc,
+          formulaE=exp_count~1,
+          formulaZ=exp_count~exp_cnvwin_log+gcPerc+align_perc,
+          initmethod='count',
+          printFullOut=1,
+          tol=10^-5,
+          pWinSize=200,
+          pquant=1,
+          basecountfile='~/fc_ciscallpeak/fc_cis_basecount',
+          diff=0,
+          cleanup=FALSE
+          )

@@ -1,0 +1,44 @@
+library(zinba)
+generateAlignability(
+                     mapdir='~/hg19map150/',
+                     outdir='./psclpeak/',
+                     athresh=4,
+                     extension=36,
+                     twoBitFile='~/hg19.2bit'
+                     )
+
+basealigncount(
+               inputfile='~/input.cis.filtered.txt.single',
+               outputfile='~/oceanc_basecount',
+               extension=0,
+               filetype='bed',
+               twoBitFile='~/hg19.2bit'
+               )
+
+run.zinba(
+          buildwin=1,
+          refinepeaks=0,
+          method='pscl',
+          threshold=0.01,
+          outfile='~/psclpeak/oceanc.pscl',
+          twoBit='~/hg19.2bit',
+          numProc=4,
+          seq='~/input.cis.filtered.txt.single',
+          input='none',
+          filetype='bed',
+          align='./psclpeak/',
+          winSize=250,
+          offset=50,
+          cnvWinSize=100000,
+          cnvOffset=2500,
+          extension=0,
+          formula=exp_count~exp_cnvwin_log+gcPerc+align_perc,
+          initmethod='count',
+          printFullOut=1,
+          tol=10^-5,
+          pWinSize=200,
+          pquant=1,
+          basecountfile='./psclpeak/fc_basecount',
+          diff=0,
+          cleanup=FALSE
+          )
